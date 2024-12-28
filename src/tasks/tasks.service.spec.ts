@@ -56,4 +56,12 @@ describe('TasksService', () => {
     expect(MockTaskModel).toHaveBeenCalledWith(createTaskDto);
     expect(mockSave).toHaveBeenCalledTimes(1);
   });
+
+  it('should delete a task', async () => {
+    const id = '12345';
+    jest.spyOn(service, 'deleteTask').mockResolvedValueOnce(undefined); 
+
+    await service.deleteTask(id);
+    expect(service.deleteTask).toHaveBeenCalledWith(id);
+  });
 });
