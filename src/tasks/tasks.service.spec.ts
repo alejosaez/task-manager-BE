@@ -59,7 +59,7 @@ describe('TasksService', () => {
 
   it('should delete a task', async () => {
     const id = '12345';
-    jest.spyOn(service, 'deleteTask').mockResolvedValueOnce(undefined); 
+    jest.spyOn(service, 'deleteTask').mockResolvedValueOnce(undefined);
 
     await service.deleteTask(id);
     expect(service.deleteTask).toHaveBeenCalledWith(id);
