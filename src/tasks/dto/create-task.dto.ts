@@ -2,13 +2,17 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsOptional, IsBoolean } from 'class-validator';
 
 export class CreateTaskDto {
-  @ApiProperty({ description: 'Título de la tarea', example: 'Comprar pan' })
+  @ApiProperty({
+    description: 'Title of the task',
+    example: 'Buy bread',
+    type: String,
+  })
   @IsString()
   title: string;
 
   @ApiProperty({
-    description: 'Descripción de la tarea',
-    example: 'Ir a la panadería a las 9 AM',
+    description: 'Description of the task',
+    example: 'Go to the bakery at 9 AM',
     required: false,
   })
   @IsOptional()
@@ -16,7 +20,7 @@ export class CreateTaskDto {
   description?: string;
 
   @ApiProperty({
-    description: 'Estado de la tarea (completada o no)',
+    description: 'Completion status of the task',
     example: false,
     required: false,
   })

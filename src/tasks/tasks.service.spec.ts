@@ -6,8 +6,8 @@ import { CreateTaskDto } from './dto/create-task.dto';
 
 const mockSave = jest.fn().mockResolvedValue({
   _id: '12345',
-  title: 'Primera tarea2',
-  description: 'Esta es una tarea de prueba',
+  title: 'First task2',
+  description: 'This is a test task',
   createdAt: new Date('2024-12-28T20:37:01.841Z'),
 });
 
@@ -33,14 +33,14 @@ describe('TasksService', () => {
     service = module.get<TasksService>(TasksService);
   });
 
-  it('debe estar definido', () => {
+  it('should be defined', () => {
     expect(service).toBeDefined();
   });
 
-  it('debería crear una tarea', async () => {
+  it('should create a task', async () => {
     const createTaskDto: CreateTaskDto = {
-      title: 'Primera tarea2',
-      description: 'Esta es una tarea de prueba',
+      title: 'First task2',
+      description: 'This is a test task',
     };
 
     const expectedTask = {
