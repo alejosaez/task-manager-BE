@@ -14,7 +14,13 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
   console.log('Swagger enabled at /api');
 
-  const port = process.env.PORT || 3000;
+  app.enableCors({
+    origin: 'https://task-manager-three-kappa.vercel.app/',
+    methods: 'GET,POST,PUT,DELETE,OPTIONS',
+    allowedHeaders: 'Content-Type,Authorization',
+  });
+
+  const port = process.env.PORT || 3001;
   await app.listen(port);
 }
 
