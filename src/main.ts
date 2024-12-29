@@ -17,7 +17,7 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       'http://localhost:3000',
-      'https://task-manager-7dqr9mg3l-alejosaezs-projects.vercel.app',
+      'https://task-manager-h5ngfb4yn-alejosaezs-projects.vercel.app',
     ],
     methods: 'GET,POST,PUT,DELETE,OPTIONS',
     allowedHeaders: 'Content-Type,Authorization',
