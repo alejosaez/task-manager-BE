@@ -42,6 +42,7 @@ export interface Task {
   completed: boolean;     // Booleano, por defecto false
   createdAt: Date;        // Fecha de creación generada automáticamente
 }
+```
 
 ## **Tecnologías Usadas**
 
@@ -79,7 +80,8 @@ Este proyecto utiliza **Jest** como framework de pruebas unitarias. **Jest** es 
 
 1. **Ejecutar todas las pruebas**
    ```bash
-   yarn test```
+   yarn test
+   ```
 
 
 ## **¿Por qué ClassValidator en lugar de ExpressValidator?**
@@ -110,7 +112,8 @@ export class CreateTaskDto {
   @IsOptional()
   @IsString()
   description?: string;
-}```
+}
+```
 
 
 
@@ -126,23 +129,24 @@ export class CreateTaskDto {
 1. **Clona el repositorio**
    ```bash
    git clone <URL_DEL_REPOSITORIO>
-   cd task-manager-backend```
+   cd task-manager-backend
+   ```
 
 2.	**Instala las dependencias**
 
   `` yarn install``
 
-3.	**``Configura las variables de entorno``**
-    ``  PORT=3001
-        MONGO_URI=<TU_URL_DE_MONGO_DB>``
+3.	**Configura las variables de entorno**
+      PORT=3001
+        MONGO_URI=<TU_URL_DE_MONGO_DB>
 
-4. **``Inicia el servidor en modo desarrollo`` **
+4.  **Inicia el servidor en modo desarrollo**
      
      ``yarn start:dev``
 
-	5.	**``Accede a la API``**
+5.	**Accede a la API**
 
-     ``El backend estará disponible en http://localhost:3001.``
+   `` El backend estará disponible en http://localhost:3001.``
 
 
 
