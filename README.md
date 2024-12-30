@@ -1,101 +1,148 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# **Task Manager API**
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## **Descripción**
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Este es el backend de la aplicación **Task Manager**, una API RESTful desarrollada con **NestJS** para la gestión de tareas. Proporciona funcionalidades para crear, leer, actualizar y eliminar tareas, con una base de datos MongoDB gestionada con **Mongoose**.
 
-## Description
+El proyecto incluye validaciones, manejo estructurado de errores y documentación completa con **Swagger**.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+---
 
-## Project setup
+## **Enlace a la Documentación**
 
-```bash
-$ yarn install
-```
+La documentación interactiva de la API está disponible en:
 
-## Compile and run the project
+[Swagger - Task Manager API](https://task-manager-be-ihw3.onrender.com/api)
 
-```bash
-# development
-$ yarn run start
+---
 
-# watch mode
-$ yarn run start:dev
+## **Requerimientos Implementados**
 
-# production mode
-$ yarn run start:prod
-```
+### **Endpoints Principales**
 
-## Run tests
+| Método   | Ruta            | Descripción                                                  |
+|----------|-----------------|-------------------------------------------------------------|
+| `POST`   | `/tasks`        | Crea una nueva tarea. Valida que el campo `title` esté presente. |
+| `GET`    | `/tasks`        | Devuelve todas las tareas. Permite filtrar por estado (`completed`). |
+| `GET`    | `/tasks/:id`    | Devuelve los detalles de una tarea específica.              |
+| `PUT`    | `/tasks/:id`    | Actualiza los campos de una tarea existente.                |
+| `DELETE` | `/tasks/:id`    | Elimina una tarea por su ID.                                 |
 
-```bash
-# unit tests
-$ yarn run test
+---
 
-# e2e tests
-$ yarn run test:e2e
+### **Modelo de Datos**
 
-# test coverage
-$ yarn run test:cov
-```
+El esquema de la tarea en MongoDB incluye:
 
-## Deployment
+```typescript
+export interface Task {
+  _id: string;
+  title: string;          // Obligatorio
+  description?: string;   // Opcional
+  completed: boolean;     // Booleano, por defecto false
+  createdAt: Date;        // Fecha de creación generada automáticamente
+}
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## **Tecnologías Usadas**
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+- **NestJS**: Framework para la construcción de APIs robustas.
+- **MongoDB**: Base de datos NoSQL para la persistencia de datos.
+- **Mongoose**: Librería para la modelización de datos en MongoDB.
+- **Swagger**: Generación automática de documentación.
+- **Jest**: Framework de pruebas unitarias.
 
-```bash
-$ yarn install -g mau
-$ mau deploy
-```
+## **Estructura del Proyecto**
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+src/
+├── app.module.ts         # Módulo principal
+├── main.ts               # Punto de entrada
+├── tasks/                # Módulo de tareas
+│   ├── tasks.controller.ts # Controlador de la API
+│   ├── tasks.service.ts    # Lógica de negocio
+│   ├── dto/                # Validaciones y DTOs
+│   ├── schemas/            # Esquemas de Mongoose
+│   └── tasks.module.ts     # Configuración del módulo
+└── common/               # Funcionalidades compartidas
 
-## Resources
+### **Pruebas Unitarias con Jest**
 
-Check out a few resources that may come in handy when working with NestJS:
+Este proyecto utiliza **Jest** como framework de pruebas unitarias. **Jest** es una herramienta robusta que permite realizar pruebas rápidas, confiables y fáciles de configurar. Implementamos pruebas para validar la funcionalidad de los servicios principales, específicamente para **crear tareas** y **eliminar tareas**.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+#### **¿Por qué Jest?**
+- **Integración Nativa con NestJS**: Jest está configurado por defecto en los proyectos de **NestJS**, lo que facilita la escritura de pruebas unitarias.
+- **Rápido y confiable**: Ejecuta pruebas de forma eficiente y detecta cambios automáticamente en el código.
+- **Mocks y Spies**: Proporciona herramientas para simular dependencias y verificar interacciones.
 
-## Support
+---
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### **Cómo Ejecutar las Pruebas**
 
-## Stay in touch
+1. **Ejecutar todas las pruebas**
+   ```bash
+   yarn test```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-## License
+## **¿Por qué ClassValidator en lugar de ExpressValidator?**
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
-# task-manager-BE
-# task-manager-BE
+En este proyecto, decidí utilizar **ClassValidator** en lugar de **ExpressValidator**, basándome en la compatibilidad con **NestJS** y en las mejores prácticas del framework. A continuación, explico las razones detrás de esta decisión técnica:
+
+---
+
+### **1. Integración Nativa con NestJS**
+- **ClassValidator** está diseñado para integrarse perfectamente con **NestJS**, aprovechando al máximo sus funcionalidades basadas en TypeScript y DTOs (Data Transfer Objects).
+- **ExpressValidator**, por otro lado, está pensado para aplicaciones construidas con **Express** y carece de integración directa con NestJS.
+
+---
+
+### **2. Uso Declarativo y Limpio**
+- Con **ClassValidator**, las reglas de validación se definen directamente en las clases a través de decoradores como `@IsString()`, `@IsNotEmpty()`, etc. Esto permite mantener el código limpio y organizado.
+- En **ExpressValidator**, las validaciones se configuran como middlewares, lo que introduce redundancia y hace que el código sea más difícil de mantener.
+
+#### **Ejemplo con ClassValidator**:
+```typescript
+import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
+
+export class CreateTaskDto {
+  @IsNotEmpty({ message: 'El título es obligatorio.' })
+  @IsString()
+  title: string;
+
+  @IsOptional()
+  @IsString()
+  description?: string;
+}```
+
+
+
+## **Instalación y Configuración**
+
+### **Requisitos Previos**
+- **Node.js** >= 16.x
+- **MongoDB** (local o en la nube)
+- **Yarn** (gestor de paquetes)
+
+### **Pasos para Instalar**
+
+1. **Clona el repositorio**
+   ```bash
+   git clone <URL_DEL_REPOSITORIO>
+   cd task-manager-backend```
+
+2.	**Instala las dependencias**
+
+  `` yarn install``
+
+3.	**``Configura las variables de entorno``**
+    ``  PORT=3001
+        MONGO_URI=<TU_URL_DE_MONGO_DB>``
+
+4. **``Inicia el servidor en modo desarrollo`` **
+     
+     ``yarn start:dev``
+
+	5.	**``Accede a la API``**
+
+     ``El backend estará disponible en http://localhost:3001.``
+
+
+
