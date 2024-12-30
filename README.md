@@ -54,6 +54,7 @@ export interface Task {
 
 ## **Estructura del Proyecto**
 
+```typescript
 src/
 ├── app.module.ts         # Módulo principal
 ├── main.ts               # Punto de entrada
@@ -64,6 +65,7 @@ src/
 │   ├── schemas/            # Esquemas de Mongoose
 │   └── tasks.module.ts     # Configuración del módulo
 └── common/               # Funcionalidades compartidas
+```
 
 ### **Pruebas Unitarias con Jest**
 
